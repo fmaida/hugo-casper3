@@ -13,6 +13,9 @@
 
     {{ $styles := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "style.main.scss" . | toCSS | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $styles.Permalink }}" />
+    {{ if .Site.Params.customCSS }}
+        <link rel="stylesheet" href="{{ .Site.Params.customCSS }}" />
+    {{ end }}
 
 </head>
 <body class="{{ block "body_class" . }} {{ end }}">
